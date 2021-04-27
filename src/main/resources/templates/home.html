@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>COVID-19 Reported Cases Tracker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+<div class="container">
+    <h1>SARS-CoV-2, "COVID-19", Cases Globally</h1>
+    <h6>Sourced from John Hopkins Center for Systems Science and Engineering COVID-19 GitHub Repository</h6>
+
+    <div class="jumbotron">
+        <p class="h5" th:text="${totalReportedCases}"></p>
+        <p class="h5" th:text="${totalNewCases}"></p>
+        <hr class="my-4">
+        <a class="btn btn-success" href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series" target="_blank">Source Data</a>
+    </div>
+    <table class="table">
+        <tr>
+            <th>State/Province</th>
+            <th>Country/Region</th>
+            <th>Total reported cases</th>
+            <th>Cases since yesterday</th>
+        </tr>
+        <tr th:each="allStat : ${allStats}">
+            <td th:text="${allStat.state}"></td>
+            <td th:text="${allStat.country}"></td>
+            <td th:text="${allStat.latestTotalCases}">0</td>
+            <td th:text="${allStat.diffFromPreviousDay}">0</td>
+        </tr>
+    </table>
+</div>
+
+</body>
+
+</html>
